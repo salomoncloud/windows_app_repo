@@ -1,0 +1,10 @@
+listofwindowsapp:
+  - name: ccwinvm01qat
+    os_type: Windows
+    sku_name: P1v2
+  - name: ccwinvm02qat
+    os_type: Windows
+    sku_name: P1v2
+  - name: ccwinvm03qat
+    os_type: Windows
+    sku_name: P1v2
