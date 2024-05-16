@@ -3,7 +3,7 @@ resource "azurerm_resource_group" "salomon" {
   location = "canada east"
 }
 locals{
-  windows_app=[for f in fileset("${path.module}/devfolder", "[^_]*.yaml") : yamldecode(file("${path.module}/devfolder/${f}"))]
+  windows_app=[for f in fileset("${path.module}/dev", "[^_]*.yaml") : yamldecode(file("${path.module}/dev/${f}"))]
   windows_app_list = flatten([
     for app in local.linux_app : [
       for windowsapps in try(app.listofwindowsapp, []) :{
