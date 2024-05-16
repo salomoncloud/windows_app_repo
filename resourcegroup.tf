@@ -2,31 +2,34 @@ resource "azurerm_resource_group" "salomon" {
   name     = "salomon_win_app"
   location = "canada central"
 }
-locals{
-  windows_app=[for f in fileset("${path.module}/dev", "[^_]*.yaml") : yamldecode(file("${path.module}/dev/${f}"))]
+
+locals {
+  windows_app = yamldecode(file("${path.module}/dev/windows_apps.yaml"))
+
   windows_app_list = flatten([
-    for app in local.linux_app : [
-      for windowsapps in try(app.listofwindowsapp, []) :{
-        name=windowsapps.name
-        os_type=windowsapps.os_type
-        sku_name=windowsapps.sku_name     
-      }
-    ]
-])
+    for app in local.windows_app.listofwindowsapp : {
+      name     = app.name
+      os_type  = app.os_type
+      sku_name = app.sku_name
+    }
+  ])
 }
+
 resource "azurerm_service_plan" "windows_salomon_app" {
-  name                = "windowssalomonapp"
-  resource_group_name = azurerm_resource_group.salomon_win_app.name
-  location            = azurerm_resource_group.salomon_win_app.location
-  os_type             = each.value.os_type
-  sku_name            = each.value.sku_name
+  count               = length(local.windows_app_list)
+  name                = "windowssalomonapp-${count.index}"
+  resource_group_name = azurerm_resource_group.salomon.name
+  location            = azurerm_resource_group.salomon.location
+  os_type             = local.windows_app_list[count.index].os_type
+  sku_name            = local.windows_app_list[count.index].sku_name
 }
 
 resource "azurerm_windows_web_app" "win_salomon" {
-  name                = "windowsalomon"
-  resource_group_name = azurerm_resource_group.salomon_win_app.name
-  location            = azurerm_service_plan.salomon_win_app.location
-  service_plan_id     = each.value.id
+  count               = length(local.windows_app_list)
+  name                = local.windows_app_list[count.index].name
+  resource_group_name = azurerm_resource_group.salomon.name
+  location            = azurerm_resource_group.salomon.location
+  service_plan_id     = azurerm_service_plan.windows_salomon_app[count.index].id
 
   site_config {}
 }
