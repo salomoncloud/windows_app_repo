@@ -2,19 +2,19 @@ resource "azurerm_resource_group" "salomon" {
   name     = "salomon_win_app"
   location = "canada east"
 }
-resource "azurerm_service_plan" "example" {
-  name                = "example"
+resource "azurerm_service_plan" "windows_salomon_app" {
+  name                = "windowssalomonapp"
   resource_group_name = azurerm_resource_group.salomon_win_app.name
   location            = azurerm_resource_group.salomon_win_app.location
-  sku_name            = "P1v2"
-  os_type             = "Windows"
+  os_type             = each.value.os_type
+  sku_name            = each.value.sku_name
 }
 
-resource "azurerm_windows_web_app" "example" {
-  name                = "example"
+resource "azurerm_windows_web_app" "win_salomon" {
+  name                = "windowsalomon"
   resource_group_name = azurerm_resource_group.salomon_win_app.name
   location            = azurerm_service_plan.salomon_win_app.location
-  service_plan_id     = azurerm_service_plan.salomon_win_app.id
+  service_plan_id     = each.value.id
 
   site_config {}
 }
