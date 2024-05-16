@@ -37,15 +37,3 @@ variable "environment"{
  type=string
  default="staging"
 }
-variable "administrator_login_password" {
-type=string
-}
-variable "administrator_login" {
-type=string
-}
-variable "version_for_the_mysql_db" {
-type=string
-}
-variable "min_tls_vers" {
-type=string
-}
