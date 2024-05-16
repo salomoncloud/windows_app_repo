@@ -2,6 +2,18 @@ resource "azurerm_resource_group" "salomon" {
   name     = "salomon_win_app"
   location = "canada east"
 }
+locals{
+  windows_app=[for f in fileset("${path.module}/devfolder", "[^_]*.yaml") : yamldecode(file("${path.module}/devfolder/${f}"))]
+  windows_app_list = flatten([
+    for app in local.linux_app : [
+      for windowsapps in try(app.listofwindowsapp, []) :{
+        name=windowsapps.name
+        os_type=windowsapps.os_type
+        sku_name=windowsapps.sku_name     
+      }
+    ]
+])
+}
 resource "azurerm_service_plan" "windows_salomon_app" {
   name                = "windowssalomonapp"
   resource_group_name = azurerm_resource_group.salomon_win_app.name
