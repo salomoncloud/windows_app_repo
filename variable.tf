@@ -14,9 +14,6 @@ variable "account_tier"{
   type=string
   default="Standard"
 }
-variable "myname"{
-  type=string
-}
 variable "account_replication_type"{
   type=string
   default="GRS"
