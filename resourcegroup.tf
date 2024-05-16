@@ -1,6 +1,6 @@
 resource "azurerm_resource_group" "salomon" {
   name     = "salomon_win_app"
-  location = "canada east"
+  location = "canada central"
 }
 locals{
   windows_app=[for f in fileset("${path.module}/dev", "[^_]*.yaml") : yamldecode(file("${path.module}/dev/${f}"))]
