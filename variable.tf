@@ -74,3 +74,7 @@ variable "useragent" {
 type=string
 default="UserAgent"
 }
+variable "ipmatch" {
+type=string
+default="IPMatch"
+}
