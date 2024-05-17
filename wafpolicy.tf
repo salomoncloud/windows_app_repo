@@ -44,9 +44,14 @@ resource "azurerm_web_application_firewall_policy" "my_first_waf" {
 
       operator           = "IPMatch"
       negation_condition = false
-      match_values       = var.waf_ip_add[0]
+      match_values       = local.first_ip
     }
-
+locals {
+first_ip=var.waf_ip_add[0]
+}
+output "first_ip_output" {
+value=local.first_ip
+}
     match_conditions {
       match_variables {
         variable_name = "RequestHeaders"
