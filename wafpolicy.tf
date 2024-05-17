@@ -34,7 +34,7 @@ resource "azurerm_web_application_firewall_policy" "my_first_waf" {
 
       operator           = "IPMatch"
       negation_condition = false
-      match_values       = ["192.168.1.0/24"]
+      match_values       = var.waf_ip_add[0]
     }
 
     match_conditions {
