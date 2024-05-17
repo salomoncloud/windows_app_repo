@@ -62,3 +62,15 @@ variable "rule_dos" {
 type=string
 default="Rule2"
 }
+variable "highpriority" {
+type=number
+default="2"
+}
+variable "reqhead" {
+type=string
+default="RequestHeaders"
+}
+variable "useragent" {
+type=string
+default="UserAgent"
+}
