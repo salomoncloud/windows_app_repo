@@ -1,15 +1,22 @@
-locals{
-  waf_policy=[for f in fileset("${path.module}/waf", "[^_]*.yaml") : yamldecode(file("${path.module}/waf/${f}"))]
+locals {
+  waf_policy = [for f in fileset("${path.module}/waf", "[^_]*.yaml") : yamldecode(file("${path.module}/waf/${f}"))]
   azurewafpolicy_list = flatten([
     for app in local.waf_policy: [
-      for azurewaf in try(app.listofwafpolicy, []) :{
-        name=azurewaf.policyname
+      for azurewaf in try(app.listofwafpolicy, []) : {
+        name = azurewaf.policyname
       }
     ]
-])
+  ])
+  first_ip = var.waf_ip_add[0]
 }
+
+output "first_ip_output" {
+  value = local.first_ip
+}
+
+# Define the resource using the local value
 resource "azurerm_web_application_firewall_policy" "my_first_waf" {
-  for_each            ={for sp in local.azurewafpolicy_list: "${sp.name}"=>sp }
+  for_each            = { for sp in local.azurewafpolicy_list: "${sp.name}" => sp }
   name                = each.value.name
   resource_group_name = azurerm_resource_group.salomon.name
   location            = azurerm_resource_group.salomon.location
@@ -44,14 +51,9 @@ resource "azurerm_web_application_firewall_policy" "my_first_waf" {
 
       operator           = "IPMatch"
       negation_condition = false
-      match_values       = local.first_ip
+      match_values       = [local.first_ip] 
     }
-locals {
-first_ip=var.waf_ip_add[0]
-}
-output "first_ip_output" {
-value=local.first_ip
-}
+
     match_conditions {
       match_variables {
         variable_name = "RequestHeaders"
