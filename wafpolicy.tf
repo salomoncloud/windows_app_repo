@@ -14,7 +14,6 @@ output "first_ip_output" {
   value = local.first_ip
 }
 
-# Define the resource using the local value
 resource "azurerm_web_application_firewall_policy" "my_first_waf" {
   for_each            = { for sp in local.azurewafpolicy_list: "${sp.name}" => sp }
   name                = each.value.name
