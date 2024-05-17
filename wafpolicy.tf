@@ -21,42 +21,42 @@ resource "azurerm_web_application_firewall_policy" "my_first_waf" {
   location            = azurerm_resource_group.salomon.location
 
   custom_rules {
-    name      = "Rule1"
-    priority  = 1
-    rule_type = "MatchRule"
+    name      = var.rule_uno
+    priority  = var.top_priority
+    rule_type = var.matchrule
 
     match_conditions {
       match_variables {
-        variable_name = "RemoteAddr"
+        variable_name = var.varname
       }
 
-      operator           = "IPMatch"
+      operator           = var.ipmatch
       negation_condition = false
       match_values       = var.waf_ip_add
     }
 
-    action = "Block"
+    action = var.blockaction
   }
 
   custom_rules {
-    name      = "Rule2"
-    priority  = 2
-    rule_type = "MatchRule"
+    name      = var.rule_dos
+    priority  = var.highpriority
+    rule_type = var.matchrule
 
     match_conditions {
       match_variables {
-        variable_name = "RemoteAddr"
+        variable_name = var.varname
       }
 
-      operator           = "IPMatch"
+      operator           = var.ipmatch
       negation_condition = false
       match_values       = [local.first_ip] 
     }
 
     match_conditions {
       match_variables {
-        variable_name = "RequestHeaders"
-        selector      = "UserAgent"
+        variable_name = var.reqhead
+        selector      = var.useragent
       }
 
       operator           = "Contains"
