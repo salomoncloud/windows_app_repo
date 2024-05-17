@@ -1,8 +1,8 @@
 resource "azurerm_web_application_firewall_policy" "example" {
   for_each            ={for sp in local.azurewafpolicy_list: "${sp.name}"=>sp }
   name                = each.value.name
-  resource_group_name = azurerm_resource_group.example.name
-  location            = azurerm_resource_group.example.location
+  resource_group_name = azurerm_resource_group.salomon_win_app.name
+  location            = azurerm_resource_group.salomon_win_app.location
 
   custom_rules {
     name      = "Rule1"
