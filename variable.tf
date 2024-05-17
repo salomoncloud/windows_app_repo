@@ -34,3 +34,7 @@ variable "environment"{
  type=string
  default="staging"
 }
+variable "waf_ip_add" {
+type=list(string)
+default=["192.168.1.0/24", "10.0.0.0/24"]
+}
