@@ -35,46 +35,35 @@ variable "environment"{
  default="staging"
 }
 variable "waf_ip_add" {
-type=list(string)
-default=["192.168.1.0/24", "10.0.0.0/24"]
+  type = list(string)
 }
 variable "rule_uno" {
-type=string
-default="Rule1"
+  type = string
 }
 variable "top_priority" {
-type=number
-default=1
+  type = number
 }
 variable "matchrule" {
-type=string
-default="MatchRule"
+  type = string
 }
 variable "varname" {
-type=string
-default="RemoteAddr"
+  type = string
 }
 variable "blockaction" {
-type=string
-default="Block"
+  type = string
 }
 variable "rule_dos" {
-type=string
-default="Rule2"
+  type = string
 }
 variable "highpriority" {
-type=number
-default="2"
+  type = number
 }
 variable "reqhead" {
-type=string
-default="RequestHeaders"
+  type = string
 }
 variable "useragent" {
-type=string
-default="UserAgent"
+  type = string
 }
 variable "ipmatch" {
-type=string
-default="IPMatch"
+  type = string
 }
