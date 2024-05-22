@@ -7,7 +7,7 @@ locals {
   }]
 }
 
-resource "azurerm_virtual_machine" "main" {
+resource "azurerm_virtual_machine" "secondgroup" {
   count                = length(local.vms_list)
   name                 = "${var.prefix}-${local.vms_list[count.index].name}"
   location             = azurerm_resource_group.salomon.location
