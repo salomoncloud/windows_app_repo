@@ -4,9 +4,8 @@ locals {
   vms_list = flatten([
     for app in local.virtualmachine.listofvms : [
       {
-        name     = app.name
-        os_type  = app.os_type
-        sku_name = app.sku_name
+        name     = vms.name
+        size     = Standard_DS1_v2
       }
     ]
   ])
