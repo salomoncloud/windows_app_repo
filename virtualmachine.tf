@@ -1,7 +1,7 @@
 locals {
   vms = yamldecode(file("${path.module}/vm/virtualmachine.yaml"))
 
-  vms_list = [for vm in local.vms.listofvms : {
+  vms_list = [for vm in local.vms.vms : {
     name = vm.name
     size = vm.size
   }]
