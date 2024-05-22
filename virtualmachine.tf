@@ -2,7 +2,7 @@ locals {
   vms = yamldecode(file("${path.module}/vm/virtualmachine.yaml"))
 
   vms_list = flatten([
-    for app in local.windows_app.listofwindowsapp : [
+    for app in local.virtualmachine.listofvms : [
       {
         name     = app.name
         os_type  = app.os_type
