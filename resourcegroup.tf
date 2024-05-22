@@ -35,9 +35,6 @@ resource "azurerm_windows_web_app" "win_salomon" {
 
   site_config {}
 }
-variable "prefix" {
-  default = "mcit_vm"
-}
 
 resource "azurerm_virtual_network" "salomon_net" {
   name                = "salomon_net"
