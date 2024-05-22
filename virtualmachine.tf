@@ -12,7 +12,7 @@ resource "azurerm_virtual_machine" "secondgroup" {
   name                 = "${var.prefix}-${local.vms_list[count.index].name}"
   location             = azurerm_resource_group.salomon.location
   resource_group_name  = azurerm_resource_group.salomon.name
-  network_interface_ids= [azurerm_network_interface.main.id]
+  network_interface_ids= [azurerm_network_interface.secondgroup.id]
   vm_size              = local.vms_list[count.index].size
 
   storage_image_reference {
