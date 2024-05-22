@@ -1,5 +1,7 @@
+
+
 resource "azurerm_virtual_network" "main" {
-  name                = "${var.prefix}-network"
+  name                = "salomon_net"
   address_space       = ["10.0.0.0/16"]
   location            = azurerm_resource_group.salomon.location
   resource_group_name = azurerm_resource_group.salomon.name
@@ -13,9 +15,9 @@ resource "azurerm_subnet" "internal" {
 }
 
 resource "azurerm_network_interface" "main" {
-  name                = "${var.prefix}-nic"
-  location            = azurerm_resource_group.example.location
-  resource_group_name = azurerm_resource_group.example.name
+  name                = "salomon_nic"
+  location            = azurerm_resource_group.salomon.location
+  resource_group_name = azurerm_resource_group.salomon.name
 
   ip_configuration {
     name                          = "testconfiguration1"
@@ -26,8 +28,8 @@ resource "azurerm_network_interface" "main" {
 
 resource "azurerm_virtual_machine" "main" {
   name                  = "${var.prefix}-vm"
-  location              = azurerm_resource_group.example.location
-  resource_group_name   = azurerm_resource_group.example.name
+  location              = azurerm_resource_group.salomon.location
+  resource_group_name   = azurerm_resource_group.salomon.name
   network_interface_ids = [azurerm_network_interface.main.id]
   vm_size               = "Standard_DS1_v2"
 
@@ -51,8 +53,8 @@ resource "azurerm_virtual_machine" "main" {
   }
   os_profile {
     computer_name  = "hostname"
-    admin_username = "testadmin"
-    admin_password = "Password1234!"
+    admin_username = var.admin_username
+    admin_password = var.admin_password
   }
   os_profile_linux_config {
     disable_password_authentication = false
