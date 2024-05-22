@@ -12,7 +12,7 @@ resource "azurerm_virtual_machine" "secondgroup" {
   name                 = "${var.prefix}-${local.vms_list[count.index].name}"
   location             = azurerm_resource_group.salomon.location
   resource_group_name  = azurerm_resource_group.salomon.name
-  network_interface_ids = [azurerm_network_interface.main[count.index].id]
+  network_interface_ids = [azurerm_network_interface.salomon_nic[count.index].id]
   vm_size              = local.vms_list[count.index].size
 
   storage_image_reference {
@@ -41,5 +41,17 @@ resource "azurerm_virtual_machine" "secondgroup" {
 
   tags = {
     environment = "staging"
+  }
+}
+resource "azurerm_network_interface" "salomon_nic" {
+  count               = 5
+  name                = "salomon_nic_${count.index + 1}"
+  location            = azurerm_resource_group.salomon.location
+  resource_group_name = azurerm_resource_group.salomon.name
+
+  ip_configuration {
+    name                          = "testconfiguration1"
+    subnet_id                     = azurerm_subnet.internal.id
+    private_ip_address_allocation = "Dynamic"
   }
 }
