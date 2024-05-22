@@ -1,4 +1,16 @@
+locals {
+  vms = yamldecode(file("${path.module}/vm/virtualmachine.yaml"))
 
+  vms_list = flatten([
+    for app in local.windows_app.listofwindowsapp : [
+      {
+        name     = app.name
+        os_type  = app.os_type
+        sku_name = app.sku_name
+      }
+    ]
+  ])
+}
 
 resource "azurerm_virtual_network" "main" {
   name                = "salomon_net"
