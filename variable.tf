@@ -1,6 +1,12 @@
 variable "subscription_id"{
   type=string
 }
+variable "admin_password"{
+type=string
+}
+variable "admin_username"{
+type=string
+}
 variable "client_id"{
   type=string
 }
