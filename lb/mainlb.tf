@@ -8,7 +8,7 @@ resource "azurerm_resource_group" "test" {
 }
 
 module "mylb" {
-  source                                 = "../.."
+  source                                 = "lb/mainlb"
   resource_group_name                    = azurerm_resource_group.test.name
   type                                   = "private"
   frontend_subnet_id                     = module.network.vnet_subnets[0]
