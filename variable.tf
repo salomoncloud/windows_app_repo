@@ -73,3 +73,6 @@ variable "useragent" {
 variable "ipmatch" {
   type = string
 }
+variable "location" {
+type = string
+}
