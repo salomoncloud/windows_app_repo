@@ -9,6 +9,7 @@ variable "resource_group_name" {
 
 variable "location" {
   description = "The Azure region where the storage account will be created"
+  type = string
 }
 
 variable "account_tier" {
