@@ -9,3 +9,4 @@ highpriority = 2
 reqhead = "RequestHeaders"
 useragent = "UserAgent"
 ipmatch = "IPMatch"
+location = "canada east"
