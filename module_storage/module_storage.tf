@@ -9,7 +9,6 @@ variable "resource_group_name" {
 
 variable "location" {
   description = "The Azure region where the storage account will be created"
-  default     = "canada east"
 }
 
 variable "account_tier" {
