@@ -1,7 +1,7 @@
 module "storage_account" {
   source = "./module_storage/"
 
-  storage_account_name  = "salomon_storage"
+  storage_account_name  = "salomonstorage"
   resource_group_name   = "salomon"
   location              = "canada east"
   account_tier          = "Standard"
