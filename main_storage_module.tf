@@ -3,7 +3,7 @@ module "storage_account" {
 
   storage_account_name  = "salomonstorage"
   resource_group_name   = "salomon"
-  location              = "canada east"
+  location              = var.location
   account_tier          = "Standard"
 }
 
