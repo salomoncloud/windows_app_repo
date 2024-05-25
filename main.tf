@@ -1,5 +1,5 @@
 # Azure load balancer module
-data "azurerm_resource_group" "azlb" {
+data "azurerm_resource_group" "lb_name" {
   name = var.resource_group_name
 }
 
