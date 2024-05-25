@@ -2,14 +2,14 @@ resource "random_id" "rg_name" {
   byte_length = 8
 }
 
-resource "azurerm_resource_group" "test" {
+resource "azurerm_resource_group" "lb_name" {
   location = var.location
   name     = "example-lb-${random_id.rg_name.hex}"
 }
 
 module "mylb" {
   source                                 = "Azure/loadbalancer/azurerm"
-  resource_group_name                    = azurerm_resource_group.test.name
+  resource_group_name                    = azurerm_resource_group.lb_name.name
   type                                   = "private"
   frontend_subnet_id                     = module.network.vnet_subnets[0]
   frontend_private_ip_address_allocation = "Static"
