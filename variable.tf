@@ -190,7 +190,7 @@ variable "frontend_subnet_id" {
 }
 variable "name" {
   type        = string
-  default     = "lb_name"
+  default     = "lb-name"
   description = "(Optional) Name of the load balancer. If it is set, the 'prefix' variable will be ignored."
 }
 variable "pip_name" {
