@@ -32,10 +32,7 @@ variable "cross_tenant_replication_enabled"{
  type=bool
  default=false
 }
-variable "prefix"{
- type=string
- default="salomon"
-}
+
 variable "environment"{
  type=string
  default="staging"
