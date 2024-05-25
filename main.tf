@@ -22,13 +22,11 @@ locals {
 resource "azurerm_public_ip" "azlb" {
   count = var.type == "public" ? 1 : 0
 
-  allocation_method       = var.allocation_method
   location                = coalesce(var.location, data.azurerm_resource_group.azlb.location)
   name                    = local.pip_name
   resource_group_name     = data.azurerm_resource_group.azlb.name
   ddos_protection_mode    = var.pip_ddos_protection_mode
   ddos_protection_plan_id = var.pip_ddos_protection_plan_id
-  domain_name_label       = var.pip_domain_name_label
   edge_zone               = var.edge_zone
   idle_timeout_in_minutes = var.pip_idle_timeout_in_minutes
   ip_tags                 = var.pip_ip_tags
@@ -36,7 +34,6 @@ resource "azurerm_public_ip" "azlb" {
   public_ip_prefix_id     = var.pip_public_ip_prefix_id
   reverse_fqdn            = var.pip_reverse_fqdn
   sku                     = var.pip_sku
-  sku_tier                = var.pip_sku_tier
   tags = merge(var.tags, (/*<box>*/ (var.tracing_tags_enabled ? { for k, v in /*</box>*/ {
     avm_git_commit           = "d8466522dbee909d833e8f6c51c4c7ec587496d5"
     avm_git_file             = "main.tf"
