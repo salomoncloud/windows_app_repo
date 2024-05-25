@@ -192,3 +192,8 @@ variable "name" {
   default     = ""
   description = "(Optional) Name of the load balancer. If it is set, the 'prefix' variable will be ignored."
 }
+variable "pip_name" {
+  type        = string
+  default     = ""
+  description = "(Optional) Name of public ip. If it is set, the 'prefix' variable will be ignored."
+}
