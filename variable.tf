@@ -77,7 +77,8 @@ variable "location" {
 type = string
 }
 variable "resource_group_name" {
-type = string
+  type = string
+  description = "The name of the resource group."
 }
 variable "frontend_subnet_name" {
   type = string
