@@ -1,11 +1,11 @@
-resource "azurerm_resource_group" "lb_name" {
+resource "azurerm_resource_group" "example" {
   name     = var.resource_group_name
   location = var.location
 }
 
 # Azure load balancer module
 data "azurerm_resource_group" "azlb" {
-  name = var.resource_group_name
+  name = azurerm_resource_group.example.name
 }
 
 data "azurerm_subnet" "snet" {
@@ -130,9 +130,4 @@ resource "azurerm_lb_rule" "azlb" {
   enable_floating_ip             = var.lb_floating_ip_enabled
   idle_timeout_in_minutes        = 5
   probe_id                       = element(azurerm_lb_probe.azlb[*].id, count.index)
-}
-locals {
-  lb_name   = var.name != "" ? var.name : format("%s-lb", var.prefix)
-  pip_name  = var.pip_name != "" ? var.pip_name : format("%s-publicIP", var.prefix)
-  subnet_id = try(coalesce(local.data_subnet_id, var.frontend_subnet_id), null)
 }
