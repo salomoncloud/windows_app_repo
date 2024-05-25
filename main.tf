@@ -51,7 +51,7 @@ resource "azurerm_public_ip" "azlb" {
 
 resource "azurerm_lb" "azlb" {
   location            = coalesce(var.location, data.azurerm_resource_group.azlb.location)
-  name                = local.lb_name
+  name                = local.lb-name
   resource_group_name = data.azurerm_resource_group.azlb.name
   edge_zone           = var.edge_zone
   sku                 = var.lb_sku
