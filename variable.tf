@@ -102,9 +102,6 @@ variable "pip_ddos_protection_mode" {
   type = string
   default = "Disabled"
 }
-variable "pip_domain_name_label" {
-  type = string
-}
 variable "pip_sku" {
   type = string
   default = "Basic"
@@ -125,9 +122,6 @@ variable "pip_ip_tags" {
   type = map(string)
   default = {}
 }
-variable "pip_sku_tier" {
-  type = string
-}
 variable "tags" {
   type = map(string)
   default = {}
@@ -139,9 +133,6 @@ variable "tracing_tags_enabled" {
 variable "tracing_tags_prefix" {
   type = string
   default = ""
-}
-variable "allocation_method" {
-  type = string
 }
 variable "edge_zone" {
   type = string
