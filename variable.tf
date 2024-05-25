@@ -182,3 +182,13 @@ variable "frontend_private_ip_address_allocation" {
   default     = "Dynamic"
   description = "(Optional) Frontend ip allocation type (Static or Dynamic)"
 }
+variable "frontend_subnet_id" {
+  type        = string
+  default     = ""
+  description = "(Optional) Frontend subnet id to use when in private mode"
+}
+variable "name" {
+  type        = string
+  default     = ""
+  description = "(Optional) Name of the load balancer. If it is set, the 'prefix' variable will be ignored."
+}
