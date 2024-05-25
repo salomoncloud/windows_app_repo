@@ -12,16 +12,16 @@ data "azurerm_subnet" "snet" {
 }
 
 locals {
-  data_subnet_id = try(data.azurerm_subnet.snet[0].id, "")
+  data_subnet_id = try(azurerm_subnet.snet[0].id, "")
 }
 
 resource "azurerm_public_ip" "azlb" {
   count = var.type == "public" ? 1 : 0
 
   allocation_method       = var.allocation_method
-  location                = coalesce(var.location, data.azurerm_resource_group.lb_name.location)
+  location                = coalesce(var.location, azurerm_resource_group.lb_name.location)
   name                    = local.pip_name
-  resource_group_name     = data.azurerm_resource_group.lb_name.name
+  resource_group_name     = azurerm_resource_group.lb_name.name
   ddos_protection_mode    = var.pip_ddos_protection_mode
   ddos_protection_plan_id = var.pip_ddos_protection_plan_id
   domain_name_label       = var.pip_domain_name_label
