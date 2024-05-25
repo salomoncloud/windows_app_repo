@@ -22,6 +22,7 @@ locals {
 resource "azurerm_public_ip" "azlb" {
   count = var.type == "public" ? 1 : 0
 
+  allocation_method       = var.allocation_method
   location                = coalesce(var.location, data.azurerm_resource_group.azlb.location)
   name                    = local.pip_name
   resource_group_name     = data.azurerm_resource_group.azlb.name
