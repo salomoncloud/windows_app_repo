@@ -142,3 +142,8 @@ variable "pip_reverse_fqdn" {
   type = string
   default = ""
 }
+variable "allocation_method" {
+  description = "Allocation method for the public IP"
+  type = string
+  default = "Dynamic"
+}
