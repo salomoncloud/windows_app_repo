@@ -2,9 +2,10 @@
 data "azurerm_resource_group" "azlb" {
   name = var.resource_group_name
 }
-
 locals {
-  pip_name = "desired-name-for-pip"
+  lb_name   = var.name != "" ? var.name : format("%s-lb", var.prefix)
+  pip_name  = var.pip_name != "" ? var.pip_name : format("%s-publicIP", var.prefix)
+  subnet_id = try(coalesce(local.data_subnet_id, var.frontend_subnet_id), null)
 }
 
 data "azurerm_subnet" "snet" {
