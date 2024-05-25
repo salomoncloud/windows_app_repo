@@ -1,11 +1,11 @@
-resource "azurerm_resource_group" "example" {
+resource "azurerm_resource_group" "exampleone" {
   name     = var.resource_group_name
   location = var.location
 }
 
 # Azure load balancer module
 data "azurerm_resource_group" "azlb" {
-  name = azurerm_resource_group.example.name
+  name = azurerm_resource_group.exampleone.name
 }
 
 data "azurerm_subnet" "snet" {
