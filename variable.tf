@@ -147,3 +147,38 @@ variable "allocation_method" {
   type = string
   default = "Dynamic"
 }
+variable "lb_sku" {
+  type        = string
+  default     = "Basic"
+  description = "(Optional) The SKU of the Azure Load Balancer. Accepted values are Basic and Standard."
+}
+variable "lb_sku_tier" {
+  type        = string
+  default     = "Regional"
+  description = "(Optional) The SKU tier of this Load Balancer. Possible values are `Global` and `Regional`. Defaults to `Regional`. Changing this forces a new resource to be created."
+}
+variable "frontend_private_ip_address_version" {
+  type        = string
+  default     = null
+  description = "(Optional) The version of IP that the Private IP Address is. Possible values are `IPv4` or `IPv6`."
+}
+variable "frontend_ip_zones" {
+  type        = set(string)
+  default     = null
+  description = "(Optional) A collection containing the availability zone to allocate the IP in. Changing this forces a new resource to be created. Availability Zones are only supported with a [Standard SKU](https://docs.microsoft.com/azure/virtual-network/virtual-network-ip-addresses-overview-arm#standard) and [in select regions](https://docs.microsoft.com/azure/availability-zones/az-overview) at this time. Standard SKU Public IP Addresses that do not specify a zone are **not** zone-redundant by default."
+}
+variable "frontend_private_ip_address" {
+  type        = string
+  default     = ""
+  description = "(Optional) Private ip address to assign to frontend. Use it with type = private"
+}
+variable "frontend_name" {
+  type        = string
+  default     = "myPublicIP"
+  description = "(Required) Specifies the name of the frontend ip configuration."
+}
+variable "frontend_private_ip_address_allocation" {
+  type        = string
+  default     = "Dynamic"
+  description = "(Optional) Frontend ip allocation type (Static or Dynamic)"
+}
