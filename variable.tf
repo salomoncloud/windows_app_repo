@@ -218,3 +218,18 @@ variable "remote_port" {
   default     = {}
   description = "Protocols to be used for remote vm access. [protocol, backend_port].  Frontend port will be automatically generated starting at 50000 and in the output."
 }
+variable "lb_port" {
+  type        = map(any)
+  default     = {}
+  description = "Protocols to be used for lb rules. Format as [frontend_port, protocol, backend_port]"
+}
+variable "disable_outbound_snat" {
+  type        = bool
+  default     = false
+  description = "(Optional) Is snat enabled for this Load Balancer Rule? Default `false`."
+}
+variable "lb_floating_ip_enabled" {
+  type        = bool
+  default     = false
+  description = "(Optional) Are the Floating IPs enabled for this Load Balancer Rule? A floating IP is reassigned to a secondary server in case the primary server fails. Required to configure a SQL AlwaysOn Availability Group. Defaults to `false`."
+}
