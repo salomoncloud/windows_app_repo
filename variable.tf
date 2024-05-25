@@ -208,3 +208,13 @@ variable "lb_probe_interval" {
   default     = 5
   description = "Interval in seconds the load balancer health probe rule does a check"
 }
+variable "lb_probe_unhealthy_threshold" {
+  type        = number
+  default     = 2
+  description = "Number of times the load balancer health probe has an unsuccessful attempt before considering the endpoint unhealthy."
+}
+variable "remote_port" {
+  type        = map(any)
+  default     = {}
+  description = "Protocols to be used for remote vm access. [protocol, backend_port].  Frontend port will be automatically generated starting at 50000 and in the output."
+}
