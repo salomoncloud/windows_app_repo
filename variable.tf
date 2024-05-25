@@ -70,11 +70,9 @@ variable "useragent" {
 variable "ipmatch" {
   type = string
 }
-variable "location" {
-type = string
-}
+
 variable "resource_group_name" {
-  type        = string
+  type=string
   description = "(Required) The name of the resource group where the load balancer resources will be imported."
 }
 
@@ -184,6 +182,12 @@ variable "lb_sku_tier" {
   type        = string
   default     = "Regional"
   description = "(Optional) The SKU tier of this Load Balancer. Possible values are `Global` and `Regional`. Defaults to `Regional`. Changing this forces a new resource to be created."
+}
+
+variable "location" {
+  type        = string
+  default     = ""
+  description = "(Optional) The location/region where the core network will be created. The full list of Azure regions can be found at https://azure.microsoft.com/regions"
 }
 
 variable "name" {
