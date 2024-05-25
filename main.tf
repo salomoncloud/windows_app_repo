@@ -3,11 +3,6 @@ resource "azurerm_resource_group" "exampleone" {
   location = var.location
 }
 
-# Azure load balancer module
-data "azurerm_resource_group" "azlb" {
-  name = azurerm_resource_group.exampleone.name
-}
-
 data "azurerm_subnet" "snet" {
   count = (var.frontend_subnet_name != null && var.frontend_subnet_name != "") ? 1 : 0
 
