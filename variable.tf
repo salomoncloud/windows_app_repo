@@ -197,3 +197,14 @@ variable "pip_name" {
   default     = ""
   description = "(Optional) Name of public ip. If it is set, the 'prefix' variable will be ignored."
 }
+variable "lb_probe" {
+  type        = map(any)
+  default     = {}
+  description = "(Optional) Protocols to be used for lb health probes. Format as [protocol, port, request_path]"
+}
+
+variable "lb_probe_interval" {
+  type        = number
+  default     = 5
+  description = "Interval in seconds the load balancer health probe rule does a check"
+}
