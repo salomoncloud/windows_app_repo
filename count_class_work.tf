@@ -6,6 +6,10 @@ variable "vm_size"{
     type=string
     default="Standard_F2"
 }
+resource "azurerm_resource_group" "rg" {
+  name     = "rg"
+  location = "canadacentral"
+}
 resource "azurerm_virtual_network" "vnetexample" {
   name                = "example-vnet"
   address_space       = ["10.0.0.0/16"]
