@@ -1,3 +1,9 @@
+variable "administrator_login"{
+type=string
+}
+variable "administrator_login_password"{
+type=string
+}
 variable "subscription_id"{
   type=string
 }
