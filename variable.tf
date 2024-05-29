@@ -1,3 +1,7 @@
+variable "instance_count" {
+  type = number
+  default = 3
+}
 variable "db_admin_username"{
 type = string
 }
