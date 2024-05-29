@@ -1,3 +1,9 @@
+variable "db_admin_username"{
+type = string
+}
+variable "db_admin_password"{
+type=string
+}
 variable "administrator_login"{
 type=string
 }
