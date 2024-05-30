@@ -1,3 +1,7 @@
+variable "resource_group_name" {
+type = string
+default = "salomon's fantastic resource group"
+}
 variable "instance_count" {
   type = number
   default = 3
