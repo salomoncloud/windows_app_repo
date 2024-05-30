@@ -18,8 +18,8 @@ variable "vnet_address_space_two" {
   default = ["10.0.1.0/16"]
 }
 resource "azurerm_subnet" "web" {
-  name                 = var.web_subnet_name
+  name                 = var.web_subnet_name_two
   resource_group_name  = azurerm_resource_group.rg.name
   virtual_network_name = azurerm_virtual_network.vnet.name
-  address_prefixes     = var.web_subnet_prefixes
+  address_prefixes     = var.web_subnet_prefixes_two
 }
