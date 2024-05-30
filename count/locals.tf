@@ -8,3 +8,12 @@ resource "azurerm_virtual_network" "vnet" {
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
 }
+variable "vnet_name" {
+  type = string
+  default = "myVNet"
+}
+
+variable "vnet_address_space" {
+  type = list(string)
+  default = ["10.0.0.0/16"]
+}
