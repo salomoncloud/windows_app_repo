@@ -2,6 +2,10 @@ variable "resource_group_name" {
 type = string
 default = "salomon's fantastic resource group"
 }
+variable "web_subnet_name" {
+  type = string
+  default = "web-subnet"
+}
 variable "instance_count" {
   type = number
   default = 3
