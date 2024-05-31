@@ -1,0 +1,10 @@
+listofwindowsapp:
+  - name: ccwinvm01prd
+    os_type: Windows
+    sku_name: P1v2
+  - name: ccwinvm02prd
+    os_type: Windows
+    sku_name: P1v2
+  - name: ccwinvm03prd
+    os_type: Windows
+    sku_name: P1v2
